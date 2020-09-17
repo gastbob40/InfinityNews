@@ -1,0 +1,7 @@
+{
+  "name": "InfinityNews",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
