@@ -1,6 +1,21 @@
 <div class="item-list">
-    <div class="item">Refresh</div>
-    <div class="item">Subscribe</div>
-    <div class="item">Settings</div>
-    <div class="item">About</div>
+    <div class="item ion-activatable" (click)="dismiss('refresh')">
+        Refresh
+        <ion-ripple-effect></ion-ripple-effect>
+    </div>
+
+    <div class="item ion-activatable" (click)="dismiss('subscribe')">
+        Subscribe
+        <ion-ripple-effect></ion-ripple-effect>
+    </div>
+
+    <div class="item ion-activatable" (click)="dismiss('settings')">
+        Settings
+        <ion-ripple-effect></ion-ripple-effect>
+    </div>
+
+    <div class="item ion-activatable" (click)="dismiss('about')">
+        About
+        <ion-ripple-effect></ion-ripple-effect>
+    </div>
 </div>
