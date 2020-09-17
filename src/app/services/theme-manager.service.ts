@@ -6,7 +6,7 @@ import {Storage} from '@ionic/storage';
 })
 export class ThemeManagerService {
     private STORAGE_THEME_KEY = 'theme';
-    private blackMode = false;
+    public blackMode = false;
 
     constructor(private storage: Storage) {
     }

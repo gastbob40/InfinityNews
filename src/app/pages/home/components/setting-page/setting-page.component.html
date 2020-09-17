@@ -1,3 +1,24 @@
-<p>
-  setting-page works!
-</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Settings</ion-title>
+
+        <ion-buttons slot="start">
+            <!-- <ion-icon slot="icon-only" md="arrow-back-outline" ios="arrow-back-outline"></ion-icon>-->
+            <ion-back-button default-href="home" (click)="changePage.emit(PagesEnum.HomePage)"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list lines="full">
+        <ion-item>
+            <ion-icon slot="start" icon="moon" class="component-icon component-icon-dark"></ion-icon>
+            <ion-label>
+                Dark Mode
+            </ion-label>
+            <ion-toggle slot="end" (ionChange)="theme.toggleBlackMode()" [checked]="theme.blackMode"
+            ></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

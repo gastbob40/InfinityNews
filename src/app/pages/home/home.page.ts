@@ -6,6 +6,7 @@ import {ThemeManagerService} from '../../services/theme-manager.service';
 export enum Pages {
     HomePage,
     SettingsPage,
+    SubscribePage,
 }
 
 @Component({

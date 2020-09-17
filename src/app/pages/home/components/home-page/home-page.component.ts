@@ -31,7 +31,6 @@ export class HomePageComponent implements OnInit {
         return popover.onDidDismiss().then(
             (data: any) => {
                 if (data) {
-                    console.log(data.data);
                     if (data.data === 'settings') {
                         this.changePage.emit(this.PagesEnum.SettingsPage);
                     }

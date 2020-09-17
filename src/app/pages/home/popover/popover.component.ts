@@ -15,7 +15,6 @@ export class PopoverComponent implements OnInit {
     }
 
     public dismiss(action) {
-        console.log(action)
         this.popover.dismiss(action);
     }
 
