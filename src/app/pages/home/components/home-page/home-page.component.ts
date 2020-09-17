@@ -34,6 +34,10 @@ export class HomePageComponent implements OnInit {
                     if (data.data === 'settings') {
                         this.changePage.emit(this.PagesEnum.SettingsPage);
                     }
+
+                    if (data.data === 'subscribe') {
+                        this.changePage.emit(this.PagesEnum.SubscribePage);
+                    }
                 }
             }
         );

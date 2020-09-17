@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {SettingPageComponent} from './components/setting-page/setting-page.component';
 import {SubscribePageComponent} from './components/subscribe-page/subscribe-page.component';
+import {LoaderComponentComponent} from './components/loader-component/loader-component.component';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import {SubscribePageComponent} from './components/subscribe-page/subscribe-page
     IonicModule,
     HomePageRoutingModule
   ],
-    declarations: [HomePage, HomePageComponent, SettingPageComponent, SubscribePageComponent]
+    declarations: [HomePage, HomePageComponent, SettingPageComponent, SubscribePageComponent, LoaderComponentComponent]
 })
 export class HomePageModule {}

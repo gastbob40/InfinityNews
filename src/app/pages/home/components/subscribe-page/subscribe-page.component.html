@@ -1,3 +1,22 @@
-<p>
-  subscribe-page works!
-</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Subscribe</ion-title>
+
+        <ion-buttons slot="start">
+            <ion-back-button default-href="home" (click)="changePage.emit(PagesEnum.HomePage)"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-loader-component *ngIf="newsgroups == null"></app-loader-component>
+
+    <ion-list>
+        <ion-item *ngFor="let ng of newsgroups">
+            <ion-label>
+                {{ ng.name }}
+            </ion-label>
+            <ion-toggle slot="end" (ionChange)="saveNewsgroups()" [(ngModel)]="ng.subscribed"></ion-toggle>
+        </ion-item>
+    </ion-list>
+</ion-content>
