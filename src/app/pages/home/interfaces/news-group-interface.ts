@@ -4,4 +4,5 @@ export interface NewsGroupInterface {
     last: number;
     count: number | null;
     subscribed: boolean;
+    unread: any[];
 }

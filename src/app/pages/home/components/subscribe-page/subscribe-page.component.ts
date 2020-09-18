@@ -30,7 +30,8 @@ export class SubscribePageComponent implements OnInit {
                     last: ng.last,
                     count: ng.count,
                     subscribed: lastNgs.filter(x => x.name === ng.name).length !== 0
-                        && lastNgs.filter(x => x.name === ng.name)[0].subscribed
+                        && lastNgs.filter(x => x.name === ng.name)[0].subscribed,
+                    unread: lastNgs.filter(x => x.name === ng.name).length !== 0 ? lastNgs.filter(x => x.name === ng.name)[0].unread : []
                 });
             });
         });
