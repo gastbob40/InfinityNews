@@ -1,7 +1,7 @@
-<app-home-page style="height: auto" *ngIf="selectedPage == pages.HomePage"
+<app-home-page *ngIf="selectedPage == pages.HomePage"
                (changePage)="setPage($event)"></app-home-page>
 
-<app-setting-page style="height: 100%" *ngIf="selectedPage == pages.SettingsPage"
+<app-setting-page *ngIf="selectedPage == pages.SettingsPage"
                   (changePage)="setPage($event)"></app-setting-page>
 
 <app-subscribe-page *ngIf="selectedPage == pages.SubscribePage"
