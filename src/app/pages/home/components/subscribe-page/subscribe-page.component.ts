@@ -40,7 +40,7 @@ export class SubscribePageComponent implements OnInit {
 
     public saveNewsgroups() {
         console.log(this.newsgroups);
-        this.ngManager.setNewsgroup(this.newsgroups);
+        this.ngManager.setNewsgroups(this.newsgroups);
     }
 
     public shouldShowNewsgroup(name: string): boolean {

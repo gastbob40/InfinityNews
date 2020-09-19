@@ -9,6 +9,7 @@ import {HomePageComponent} from './components/home-page/home-page.component';
 import {SettingPageComponent} from './components/setting-page/setting-page.component';
 import {SubscribePageComponent} from './components/subscribe-page/subscribe-page.component';
 import {LoaderComponentComponent} from './components/loader-component/loader-component.component';
+import {NewsgroupPageComponent} from './components/newsgroup-page/newsgroup-page.component';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import {LoaderComponentComponent} from './components/loader-component/loader-com
     IonicModule,
     HomePageRoutingModule
   ],
-    declarations: [HomePage, HomePageComponent, SettingPageComponent, SubscribePageComponent, LoaderComponentComponent]
+    declarations: [HomePage, HomePageComponent, SettingPageComponent, SubscribePageComponent, LoaderComponentComponent, NewsgroupPageComponent]
 })
 export class HomePageModule {}

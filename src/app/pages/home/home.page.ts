@@ -7,6 +7,7 @@ export enum Pages {
     HomePage,
     SettingsPage,
     SubscribePage,
+    NewsGroupPage,
 }
 
 @Component({
@@ -21,7 +22,6 @@ export class HomePage {
     constructor(public popoverController: PopoverController, public theme: ThemeManagerService) {
         this.theme.loadDarkMode();
     }
-
 
     public setPage(page: Pages) {
         this.selectedPage = page;

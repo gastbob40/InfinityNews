@@ -2,6 +2,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PopoverController} from '@ionic/angular';
 import {PopoverComponent} from '../../popover/popover.component';
 import {Pages} from '../../home.page';
+import {NewsgroupManagerService} from '../../../../services/newsgroup-manager.service';
+import {ApiManagerService} from '../../../../services/api-manager.service';
+import {NewsGroupInterface} from '../../interfaces/news-group-interface';
 
 
 @Component({
@@ -12,11 +15,21 @@ import {Pages} from '../../home.page';
 export class HomePageComponent implements OnInit {
     @Output() changePage = new EventEmitter();
     PagesEnum = Pages;
+    public newsgroups: NewsGroupInterface[] = null;
 
-    constructor(public popoverController: PopoverController) {
+    constructor(public popoverController: PopoverController,
+                private ngManager: NewsgroupManagerService,
+                private apiService: ApiManagerService) {
     }
 
-    ngOnInit() {
+    async ngOnInit() {
+        const newsgroups = await this.ngManager.getNewsgroups();
+        this.newsgroups = newsgroups.filter(ng => ng.subscribed);
+    }
+
+    public selectNewsgroup(newsgroup: NewsGroupInterface) {
+        this.ngManager.setSelectedNewsgroup(newsgroup);
+        this.changePage.emit(Pages.NewsGroupPage);
     }
 
     async presentPopover(ev: any) {

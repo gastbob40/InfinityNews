@@ -6,3 +6,7 @@
 
 <app-subscribe-page *ngIf="selectedPage == pages.SubscribePage"
                     (changePage)="setPage($event)"></app-subscribe-page>
+
+<app-newsgroup-page *ngIf="selectedPage == pages.NewsGroupPage"
+                    (changePage)="setPage($event)"></app-newsgroup-page>
+

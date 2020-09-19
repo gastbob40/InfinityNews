@@ -10,28 +10,15 @@
 </ion-header>
 
 <ion-content>
-    <div class="ion-padding">
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-        <ion-skeleton-text animated
-                           style="line-height: 30px; padding-bottom: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-    </div>
+    <app-loader-component *ngIf="newsgroups == null"></app-loader-component>
+
+    <ion-list *ngIf="newsgroups != null" lines="full">
+        <ion-item detail *ngFor="let newsgroup of newsgroups" (click)="selectNewsgroup(newsgroup)">
+            <ion-label>
+                {{ newsgroup.name }}
+            </ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>
 
 <!--
