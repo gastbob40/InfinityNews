@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ newsgroup?.name }}</ion-title>
+
+        <ion-buttons slot="start">
+            <ion-back-button default-href="home" (click)="changePage.emit(PagesEnum.HomePage)"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-loader-component *ngIf="news == null"></app-loader-component>
+    <ion-list lines="full" *ngIf="news != null">
+        <ion-item detail *ngFor="let n of news">
+            <ion-label>
+                {{ n.news.subject }}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
