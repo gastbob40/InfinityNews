@@ -13,9 +13,9 @@ export class NewsModalComponent implements OnInit {
 
     completeNews: null;
     author: any = {
-        name: '',
-        email: '',
-        picture: ''
+        name: 'Infinity News',
+        email: 'infinitynews@epita.fr',
+        picture: 'https://photos.cri.epita.fr/square/infinity.news'
     };
 
     constructor(private modalController: ModalController, private api: ApiManagerService) {
@@ -24,14 +24,19 @@ export class NewsModalComponent implements OnInit {
     async ngOnInit() {
         this.api.getSpecificNews(this.group, this.news.number).subscribe(async (data) => {
             this.completeNews = data;
-            const name = data.from.split(' ');
-            this.author = {
-                name: `${name[0]} ${name[1]}`,
-                email: name[2].slice(1, -1),
-                avatar: `https://photos.cri.epita.fr/square/${name[2].slice(1, -1).split('@')[0]}`
-            };
+            try {
+                const name = data.from.split(' ');
+                this.author = {
+                    name: name.slice(0, -1).join(' '),
+                    email: name[name.length - 1].slice(1, -1),
+                    avatar: `https://photos.cri.epita.fr/square/${name[name.length - 1].slice(1, -1).split('@')[0]}`
+                };
+            } catch (e) {
+                console.log(e);
+            }
 
             // todo to reformat
+            // @ts-ignore
             this.completeNews.body = this.completeNews.body
                 .replaceAll('-- \r\n', '\r\t\r\t')
                 .replaceAll('\r\n\r\n', '\r\r\r')

@@ -11,7 +11,14 @@
 <ion-content>
     <app-loader-component *ngIf="news == null"></app-loader-component>
     <ion-list lines="full" *ngIf="news != null">
-        <ion-item detail *ngFor="let n of news" (click)="selectNews(n)">
+        <ion-item>
+            <ion-searchbar
+                    [(ngModel)]="searchInput"
+                    animated>
+            </ion-searchbar>
+        </ion-item>
+
+        <ion-item detail *ngFor="let n of news" (click)="selectNews(n)" [class.not-display]="!shouldDisplay(n)">
             <ion-label>
                 {{ n.news.subject }}
             </ion-label>

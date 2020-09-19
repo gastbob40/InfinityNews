@@ -14,6 +14,7 @@ export class NewsgroupPageComponent implements OnInit {
     PagesEnum = Pages;
     newsgroup: NewsGroupInterface = null;
     news = null;
+    searchInput = '';
 
     constructor(private ngManager: NewsgroupManagerService, private api: ApiManagerService) {
     }
@@ -28,6 +29,20 @@ export class NewsgroupPageComponent implements OnInit {
     public selectNews(news) {
         this.ngManager.setSelectedNews(news);
         this.changePage.emit(Pages.NewsGroupThreadPage);
+    }
+
+    public shouldDisplay(news) {
+        if (news.news.subject.toLowerCase().includes(this.searchInput.toLowerCase())) {
+            return true;
+        }
+
+        for (const child of news.children) {
+            if (this.shouldDisplay(child)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
