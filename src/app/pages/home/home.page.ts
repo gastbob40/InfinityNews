@@ -8,6 +8,7 @@ export enum Pages {
     SettingsPage,
     SubscribePage,
     NewsGroupPage,
+    NewsGroupThreadPage,
 }
 
 @Component({

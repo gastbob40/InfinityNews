@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {NewsGroupInterface} from '../pages/home/interfaces/news-group-interface';
+import {NewsGroupInterface} from '../interfaces/news-group-interface';
 import {Storage} from '@ionic/storage';
 
 @Injectable({

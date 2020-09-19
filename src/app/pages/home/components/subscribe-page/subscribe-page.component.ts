@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Pages} from '../../home.page';
 import {NewsgroupManagerService} from '../../../../services/newsgroup-manager.service';
 import {ApiManagerService} from '../../../../services/api-manager.service';
-import {NewsGroupInterface} from '../../interfaces/news-group-interface';
+import {NewsGroupInterface} from '../../../../interfaces/news-group-interface';
 
 @Component({
     selector: 'app-subscribe-page',

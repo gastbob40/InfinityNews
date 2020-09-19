@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NewsGroupInterface} from '../../interfaces/news-group-interface';
+import {NewsGroupInterface} from '../../../../interfaces/news-group-interface';
 import {Pages} from '../../home.page';
 import {NewsgroupManagerService} from '../../../../services/newsgroup-manager.service';
 import {ApiManagerService} from '../../../../services/api-manager.service';
