@@ -23,4 +23,8 @@ export class ApiManagerService {
     public getNews(group: string): Observable<any> {
         return this.doRequest('groups/' + group);
     }
+
+    public getSpecificNews(group: string, newsId: any): Observable<any> {
+        return this.doRequest(`groups/${group}/${newsId}`);
+    }
 }

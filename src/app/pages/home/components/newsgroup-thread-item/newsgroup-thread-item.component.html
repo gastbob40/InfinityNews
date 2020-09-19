@@ -1,6 +1,6 @@
 <ion-item detail>
-    <ion-label [style.paddingLeft]="padding * 15 + 'px'">
-        <div>{{ news?.news.subject }}</div>
+    <ion-label [style.paddingLeft]="padding * 15 + 'px'" (click)="showNews()">
+        <div> {{ news?.news.subject }} </div>
         <div class="small">{{ news?.news.date }}</div>
         <div class="small secondary">{{ news?.news.from }}</div>
     </ion-label>

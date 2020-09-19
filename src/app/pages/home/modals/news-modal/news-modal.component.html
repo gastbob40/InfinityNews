@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ group }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="completeNews">
+    <app-loader-component *ngIf="completeNews == null"></app-loader-component>
+
+    <ion-card style="margin-top: 16px;" *ngIf="completeNews != null">
+        <ion-card-header style="display: flex; justify-content: space-between">
+            <div>
+                <ion-card-title>{{ author.name }}</ion-card-title>
+                <ion-card-subtitle style="width: 90%;">{{ completeNews?.subject }}</ion-card-subtitle>
+            </div>
+
+            <div style="width: 64px; height: 64px">
+                <ion-avatar>
+                    <img [src]="author.avatar" alt="avatar">
+                </ion-avatar>
+            </div>
+        </ion-card-header>
+
+        <ion-card-content class="line-breaker">{{ completeNews?.body }}</ion-card-content>
+    </ion-card>
+</ion-content>
