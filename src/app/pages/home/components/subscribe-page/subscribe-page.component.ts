@@ -12,6 +12,7 @@ import {NewsGroupInterface} from '../../interfaces/news-group-interface';
 export class SubscribePageComponent implements OnInit {
     @Output() changePage = new EventEmitter();
     PagesEnum = Pages;
+    public searchInput = '';
 
     newsgroups: NewsGroupInterface[] = null;
 
@@ -40,6 +41,10 @@ export class SubscribePageComponent implements OnInit {
     public saveNewsgroups() {
         console.log(this.newsgroups);
         this.ngManager.setNewsgroup(this.newsgroups);
+    }
+
+    public shouldShowNewsgroup(name: string): boolean {
+        return name.toLowerCase().includes(this.searchInput.toLowerCase());
     }
 
 }

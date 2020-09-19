@@ -11,8 +11,15 @@
 <ion-content>
     <app-loader-component *ngIf="newsgroups == null"></app-loader-component>
 
-    <ion-list>
-        <ion-item *ngFor="let ng of newsgroups">
+    <ion-list *ngIf="newsgroups != null">
+        <ion-item>
+            <ion-searchbar
+                    [(ngModel)]="searchInput"
+                    animated>
+            </ion-searchbar>
+        </ion-item>
+
+        <ion-item *ngFor="let ng of newsgroups" [class.not-display]="!shouldShowNewsgroup(ng.name)">
             <ion-label>
                 {{ ng.name }}
             </ion-label>
