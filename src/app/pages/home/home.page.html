@@ -10,3 +10,5 @@
 <app-newsgroup-page *ngIf="selectedPage == pages.NewsGroupPage"
                     (changePage)="setPage($event)"></app-newsgroup-page>
 
+<app-newsgroup-thread-page *ngIf="selectedPage == pages.NewsGroupThreadPage"
+                    (changePage)="setPage($event)"></app-newsgroup-thread-page>

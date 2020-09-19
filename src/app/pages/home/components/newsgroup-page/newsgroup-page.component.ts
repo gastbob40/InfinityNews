@@ -25,4 +25,9 @@ export class NewsgroupPageComponent implements OnInit {
         });
     }
 
+    public selectNews(news) {
+        this.ngManager.setSelectedNews(news);
+        this.changePage.emit(Pages.NewsGroupThreadPage);
+    }
+
 }

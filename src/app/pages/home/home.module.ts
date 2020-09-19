@@ -10,6 +10,8 @@ import {SettingPageComponent} from './components/setting-page/setting-page.compo
 import {SubscribePageComponent} from './components/subscribe-page/subscribe-page.component';
 import {LoaderComponentComponent} from './components/loader-component/loader-component.component';
 import {NewsgroupPageComponent} from './components/newsgroup-page/newsgroup-page.component';
+import {NewsgroupThreadPageComponent} from './components/newsgroup-thread-page/newsgroup-thread-page.component';
+import {NewsgroupThreadItemComponent} from './components/newsgroup-thread-item/newsgroup-thread-item.component';
 
 
 @NgModule({
@@ -19,6 +21,6 @@ import {NewsgroupPageComponent} from './components/newsgroup-page/newsgroup-page
     IonicModule,
     HomePageRoutingModule
   ],
-    declarations: [HomePage, HomePageComponent, SettingPageComponent, SubscribePageComponent, LoaderComponentComponent, NewsgroupPageComponent]
+    declarations: [HomePage, HomePageComponent, SettingPageComponent, SubscribePageComponent, LoaderComponentComponent, NewsgroupPageComponent, NewsgroupThreadPageComponent, NewsgroupThreadItemComponent]
 })
 export class HomePageModule {}
