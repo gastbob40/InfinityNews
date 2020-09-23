@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Subscribe</ion-title>
+
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-loader-component *ngIf="newsgroups == null"></app-loader-component>
+
+    <ion-list *ngIf="newsgroups != null">
+        <ion-item>
+            <ion-searchbar
+                    [(ngModel)]="searchInput"
+                    animated>
+            </ion-searchbar>
+        </ion-item>
+
+        <ion-item *ngFor="let ng of newsgroups" [class.not-display]="!shouldShowNewsgroup(ng.name)">
+            <ion-label>
+                {{ ng.name }}
+            </ion-label>
+            <ion-toggle slot="end" (ionChange)="saveNewsgroups()" [(ngModel)]="ng.subscribed"></ion-toggle>
+        </ion-item>
+    </ion-list>
+</ion-content>

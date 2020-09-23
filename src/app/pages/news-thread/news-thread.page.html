@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ newsgroup?.name }}</ion-title>
+
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-loader-component *ngIf="newsThread == null"></app-loader-component>
+    <ion-list lines="full" *ngIf="newsThread != null">
+        <app-newsgroup-thread-item [news]="newsThread" [padding]="0"></app-newsgroup-thread-item>
+    </ion-list>
+</ion-content>

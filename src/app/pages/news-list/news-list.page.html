@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ newsgroup?.name }}</ion-title>
+
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-loader-component *ngIf="news == null"></app-loader-component>
+
+    <ion-list lines="full" *ngIf="news != null">
+        <ion-item>
+            <ion-searchbar
+                    [(ngModel)]="searchInput"
+                    animated>
+            </ion-searchbar>
+        </ion-item>
+
+        <ion-item detail *ngFor="let n of news" [class.not-display]="!shouldDisplay(n)" (click)="setNewsThread(n)">
+            <ion-label>
+                {{ n.news.subject }}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

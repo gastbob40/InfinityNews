@@ -21,10 +21,15 @@ export class ApiManagerService {
     }
 
     public getNews(group: string): Observable<any> {
-        return this.doRequest('groups/' + group);
+        return this.doRequest('groups/' + group + '?onlyNews');
     }
 
     public getSpecificNews(group: string, newsId: any): Observable<any> {
         return this.doRequest(`groups/${group}/${newsId}`);
+    }
+
+    // new function
+    public getStaffs(): Observable<any> {
+        return this.doRequest(`staffs/`);
     }
 }

@@ -1,4 +1,27 @@
-<app-home-page *ngIf="selectedPage == pages.HomePage"
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-button (click)="presentPopover($event)">
+                <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Infinity News</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-loader-component *ngIf="newsgroups == null"></app-loader-component>
+
+    <ion-list *ngIf="newsgroups != null" lines="full">
+        <ion-item detail *ngFor="let newsgroup of newsgroups" (click)="setNewsGroup(newsgroup)">
+            <ion-label>
+                {{ newsgroup.name }}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<!--<app-home-page *ngIf="selectedPage == pages.HomePage"
                (changePage)="setPage($event)"></app-home-page>
 
 <app-setting-page *ngIf="selectedPage == pages.SettingsPage"
@@ -11,4 +34,6 @@
                     (changePage)="setPage($event)"></app-newsgroup-page>
 
 <app-newsgroup-thread-page *ngIf="selectedPage == pages.NewsGroupThreadPage"
-                    (changePage)="setPage($event)"></app-newsgroup-thread-page>
+                    (changePage)="setPage($event)"></app-newsgroup-thread-page>-->
+
+

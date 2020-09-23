@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>About</ion-title>
+
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="content">
+        <ion-img src="../../../assets/logos/epimac_white.png" class="epimac-logo"
+                 *ngIf="themeService.blackMode == true"></ion-img>
+        <ion-img src="../../../assets/logos/epimac_black.png" class="epimac-logo"
+                 *ngIf="themeService.blackMode == false"></ion-img>
+
+        <div class="epimac-author">
+            Application réalisée par Gastbob40 & EpiMac
+        </div>
+
+        <div class="epimac-desc">
+            Lancé il y a plus de 20 ans dans l’optique d’intégrer les technologies Apple dans le monde de l’éducation,
+            EpiMac est une association étudiante Apple. Elle propose des sessions d’apprentissage à la programmation,
+            des conférences, des workshops thématiques,
+            des soirées dédiées et accompagnent les étudiants et professeurs dans les projets professionnels.
+        </div>
+
+        <div class="epimac-desc">
+            Nos membres bénéficient d’avantages inédits et d’une collaboration étroite avec des acteurs du domaine et
+            des entreprises partenaires.
+        </div>
+
+        <div class="epimac-desc">
+            "L'innovation, c'est une situation qu'on choisit parce qu'on a une passion brûlante pour quelque chose."
+            - Steve Jobs
+        </div>
+
+        <ion-button
+                fill="solid"
+                expand="block"
+                class="btn"
+                (click)="openEpiMacWebSite()">
+            Accéder au site
+        </ion-button>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-img src="../../../assets/logos/epimac_white.png"
+                 *ngIf="themeService.blackMode == true"></ion-img>
+        <ion-img src="../../../assets/logos/epimac_black.png"
+                 *ngIf="themeService.blackMode == false"></ion-img>
+        <ion-img slot="end" class="icon" src="../../assets/logos/gast.png"></ion-img>
+    </ion-toolbar>
+</ion-footer>
