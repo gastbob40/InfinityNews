@@ -11,6 +11,6 @@
 <ion-content>
     <app-loader-component *ngIf="newsThread == null"></app-loader-component>
     <ion-list lines="full" *ngIf="newsThread != null">
-        <app-newsgroup-thread-item [news]="newsThread" [padding]="0"></app-newsgroup-thread-item>
+        <app-newsgroup-thread-item [news]="newsThread" [padding]="0" [staffs]="staffs"></app-newsgroup-thread-item>
     </ion-list>
 </ion-content>

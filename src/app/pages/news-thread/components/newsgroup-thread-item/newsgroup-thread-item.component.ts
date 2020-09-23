@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IonRouterOutlet, ModalController} from '@ionic/angular';
 import {NewsModalComponent} from '../../modals/news-modal/news-modal.component';
+import {StaffsInterface} from '../../../../interfaces/staffs-interface';
+import {NewsListInterface} from '../../../../interfaces/news-list-interface';
+import {NewsInterface} from '../../../../interfaces/news-interface';
 
 
 @Component({
@@ -9,13 +12,21 @@ import {NewsModalComponent} from '../../modals/news-modal/news-modal.component';
     styleUrls: ['./newsgroup-thread-item.component.scss'],
 })
 export class NewsgroupThreadItemComponent implements OnInit {
-    @Input() news;
+    @Input() news: NewsListInterface;
     @Input() padding: number;
+    @Input() staffs: StaffsInterface;
+    badge: { color: string; slug: string; } = null;
 
     constructor(public modalController: ModalController) {
     }
 
     ngOnInit() {
+        const name = this.news.news.from.split(' ');
+        const email = name[name.length - 1].slice(1, -1);
+
+        if (this.staffs[email] !== undefined) {
+            this.badge = this.staffs[email];
+        }
     }
 
     async showNews() {
@@ -28,5 +39,11 @@ export class NewsgroupThreadItemComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    getColor() {
+        return {
+            '--background': this.badge.color
+        };
     }
 }

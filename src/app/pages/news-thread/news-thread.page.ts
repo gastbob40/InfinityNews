@@ -3,6 +3,7 @@ import {NewsGroupInterface} from '../../interfaces/news-group-interface';
 import {NewsListInterface} from '../../interfaces/news-list-interface';
 import {DataService} from '../../services/data.service';
 import {NavController} from '@ionic/angular';
+import {StaffsInterface} from '../../interfaces/staffs-interface';
 
 @Component({
     selector: 'app-news-thread',
@@ -10,7 +11,7 @@ import {NavController} from '@ionic/angular';
     styleUrls: ['./news-thread.page.scss'],
 })
 export class NewsThreadPage implements OnInit {
-    public staffs: any;
+    public staffs: StaffsInterface;
     public newsgroup: NewsGroupInterface = null;
     public newsThread: NewsListInterface[] = null;
 
@@ -18,6 +19,7 @@ export class NewsThreadPage implements OnInit {
     }
 
     async ngOnInit() {
+        this.staffs = this.dataService.getData('staffs');
         this.newsgroup = this.dataService.getData('newsgroup');
         this.newsThread = this.dataService.getData('newsThread');
 

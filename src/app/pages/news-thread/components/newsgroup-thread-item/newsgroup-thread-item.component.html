@@ -3,9 +3,9 @@
         <div> {{ news?.news.subject }} </div>
         <div class="small secondary">{{ news?.news.date }}</div>
     </ion-label>
-    <ion-badge color="danger" slot="end">ACU</ion-badge>
+    <ion-badge  slot="end" *ngIf="badge !== null" [style]="getColor()">{{ badge.slug.toUpperCase() }}</ion-badge>
 </ion-item>
 
 <app-newsgroup-thread-item *ngFor="let child of news.children" [news]="child"
-                           [padding]="padding + 1"></app-newsgroup-thread-item>
+                           [padding]="padding + 1" [staffs]="staffs"></app-newsgroup-thread-item>
 
