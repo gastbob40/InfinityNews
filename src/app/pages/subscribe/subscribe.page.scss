@@ -15,3 +15,8 @@ ion-content {
 .not-display {
   display: none;
 }
+
+ion-toggle {
+  --background-checked: #FC9303;
+  --handle-background-checked: #DA680F;
+}

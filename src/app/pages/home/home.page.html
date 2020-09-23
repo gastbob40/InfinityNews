@@ -12,7 +12,10 @@
 <ion-content>
     <app-loader-component *ngIf="newsgroups == null"></app-loader-component>
 
-    <ion-list *ngIf="newsgroups != null" lines="full">
+    <ion-img src="../../../assets/empty.svg" *ngIf="newsgroups != null && newsgroups.length == 0"
+             class="empty-svg"></ion-img>
+
+    <ion-list *ngIf="newsgroups != null && newsgroups.length > 0" lines="full">
         <ion-item detail *ngFor="let newsgroup of newsgroups" (click)="setNewsGroup(newsgroup)">
             <ion-label>
                 {{ newsgroup.name }}

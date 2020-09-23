@@ -11,3 +11,11 @@ ion-header {
 ion-content {
   height: calc(100% - 50px);
 }
+
+.empty-svg {
+  width: 90%;
+  position: fixed;
+  top: calc(50% + 50px);
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 50px));
+}
