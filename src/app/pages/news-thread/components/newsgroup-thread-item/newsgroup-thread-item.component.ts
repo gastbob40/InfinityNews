@@ -4,6 +4,8 @@ import {NewsModalComponent} from '../../modals/news-modal/news-modal.component';
 import {StaffsInterface} from '../../../../interfaces/staffs-interface';
 import {NewsListInterface} from '../../../../interfaces/news-list-interface';
 import {NewsInterface} from '../../../../interfaces/news-interface';
+import {NewsGroupInterface} from '../../../../interfaces/news-group-interface';
+import {DataService} from '../../../../services/data.service';
 
 
 @Component({
@@ -16,11 +18,14 @@ export class NewsgroupThreadItemComponent implements OnInit {
     @Input() padding: number;
     @Input() staffs: StaffsInterface;
     badge: { color: string; slug: string; } = null;
+    newsgroup: NewsGroupInterface = null;
 
-    constructor(public modalController: ModalController) {
+    constructor(public modalController: ModalController, private dataService: DataService) {
     }
 
     ngOnInit() {
+        this.newsgroup = this.dataService.getData('newsThread');
+
         const name = this.news.news.from.split(' ');
         const email = name[name.length - 1].slice(1, -1);
 
@@ -39,6 +44,10 @@ export class NewsgroupThreadItemComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    shouldMarkUnread(news) {
+        return this.newsgroup.unread.includes(news.number);
     }
 
     getColor() {

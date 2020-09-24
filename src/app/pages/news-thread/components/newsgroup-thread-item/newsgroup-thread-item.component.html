@@ -1,9 +1,9 @@
 <ion-item detail>
     <ion-label [style.paddingLeft]="padding * 15 + 'px'" (click)="showNews()" style="white-space: normal">
-        <div> {{ news?.news.subject }} </div>
+        <div [class.unread]="news?.news.number"> {{ news?.news.subject }} </div>
         <div class="small secondary">{{ news?.news.date }}</div>
     </ion-label>
-    <ion-badge  slot="end" *ngIf="badge !== null" [style]="getColor()">{{ badge.slug.toUpperCase() }}</ion-badge>
+    <ion-badge slot="end" *ngIf="badge !== null" [style]="getColor()">{{ badge.slug.toUpperCase() }}</ion-badge>
 </ion-item>
 
 <app-newsgroup-thread-item *ngFor="let child of news.children" [news]="child"

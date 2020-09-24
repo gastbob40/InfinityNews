@@ -26,7 +26,6 @@ export class NewsListPage implements OnInit {
 
         this.api.getNews(this.newsgroup.name).subscribe(async (data) => {
             this.news = data;
-            console.log(this.news);
         });
     }
 
@@ -42,6 +41,20 @@ export class NewsListPage implements OnInit {
 
         for (const child of news.children) {
             if (this.shouldDisplay(child)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public shouldMarkUnread(news) {
+        if (this.newsgroup.unread.includes(parseInt(news.news.number, 10))) {
+            return true;
+        }
+
+        for (const child of news.children) {
+            if (this.shouldMarkUnread(child)) {
                 return true;
             }
         }

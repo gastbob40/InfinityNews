@@ -12,7 +12,7 @@ export class NewsModalComponent implements OnInit {
     @Input() news: NewsInterface;
     @Input() group: string;
     completeNews: NewsInterface = null;
-    
+
     author: any = {
         name: 'Infinity News',
         email: 'infinitynews@epita.fr',
@@ -38,7 +38,9 @@ export class NewsModalComponent implements OnInit {
 
             // todo to reformat
             // @ts-ignore
+
             this.completeNews.body = this.completeNews.body
+                // @ts-ignore
                 .replaceAll('-- \r\n', '\r\t\r\t')
                 .replaceAll('\r\n\r\n', '\r\r\r')
                 .replaceAll('\r\n', ' ')

@@ -25,11 +25,11 @@ export class HomePage implements OnInit {
         const newsgroups = await this.ngManager.getNewsgroups();
         await this.updateNewsgroups();
         /*for (let newsgroup of newsgroups) {
-            if (newsgroup.name === 'assistants.news') {
-                newsgroup.last = 2077;
+            if (newsgroup.name === 'cri.news') {
+                // newsgroup.last = 90;
             }
-        }*/
-        // this.ngManager.setNewsgroups(newsgroups);
+        }
+        this.ngManager.setNewsgroups(newsgroups);*/
         this.newsgroups = newsgroups.filter(ng => ng.subscribed);
 
     }
@@ -50,20 +50,21 @@ export class HomePage implements OnInit {
 
     async updateNewsgroups() {
         this.apiService.getGroups().subscribe(async (newNewsgroups: NewsGroupInterface[]) => {
-            for (let i = 0; i < this.newsgroups.length; i++) {
-                const newNewsgroup = newNewsgroups.filter(x => x.name === this.newsgroups[i].name)[0];
+            let newsgroups = await this.ngManager.getNewsgroups();
+            for (let i = 0; i < newsgroups.length; i++) {
+                const newNewsgroup = newNewsgroups.filter(x => x.name === newsgroups[i].name)[0];
 
                 // We have data!
                 if (newNewsgroup) {
-                    for (let j = this.newsgroups[i].last + 1; j <= newNewsgroup.last; j++) {
-                        this.newsgroups[i].unread.push(j);
+                    for (let j = newsgroups[i].last + 1; j <= newNewsgroup.last; j++) {
+                        newsgroups[i].unread.push(j);
                     }
-                    this.newsgroups[i].last = newNewsgroup.last;
-
+                    newsgroups[i].last = newNewsgroup.last;
                 }
             }
 
-            await this.ngManager.setNewsgroups(this.newsgroups);
+            await this.ngManager.setNewsgroups(newsgroups);
+            this.newsgroups = newsgroups.filter(ng => ng.subscribed);
         });
     }
 
