@@ -28,6 +28,13 @@ export class HomePage implements OnInit {
 
     async ngOnInit() {
         // We need to get staff from data base
+        /*let nw = await this.ngManager.getNewsgroups();
+        for (let i = 0; i < nw.length; i++) {
+            if (nw[i].name === 'cri.news') {
+                nw[i].last = 90;
+            }
+        }
+        this.ngManager.setNewsgroups(nw);*/
         this.apiService.getStaffs().subscribe(async (data) => {
             const staffs = {};
             for (const d of data) {

@@ -24,8 +24,7 @@ export class NewsgroupThreadItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.newsgroup = this.dataService.getData('newsThread');
-
+        this.newsgroup = this.dataService.getData('newsgroup');
         const name = this.news.news.from.split(' ');
         const email = name[name.length - 1].slice(1, -1);
 
@@ -43,11 +42,14 @@ export class NewsgroupThreadItemComponent implements OnInit {
             }
         });
 
-        return await modal.present();
+        await modal.present();
+        await modal.onDidDismiss();
+        console.log('close');
+        this.newsgroup = this.dataService.getData('newsgroup');
     }
 
     shouldMarkUnread(news) {
-        return this.newsgroup.unread.includes(news.number);
+        return this.newsgroup.unread.includes(parseInt(news.number, 10));
     }
 
     getColor() {

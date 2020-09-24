@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ApiManagerService} from '../../../../services/api-manager.service';
 import {NewsInterface} from '../../../../interfaces/news-interface';
+import {DataService} from '../../../../services/data.service';
+import {NewsgroupManagerService} from '../../../../services/newsgroup-manager.service';
+import {NewsGroupInterface} from '../../../../interfaces/news-group-interface';
 
 @Component({
     selector: 'app-news-modal',
@@ -19,7 +22,8 @@ export class NewsModalComponent implements OnInit {
         picture: 'https://photos.cri.epita.fr/square/infinity.news'
     };
 
-    constructor(private modalController: ModalController, private api: ApiManagerService) {
+    constructor(private modalController: ModalController, private api: ApiManagerService, private dataService: DataService,
+                private ngManager: NewsgroupManagerService) {
     }
 
     async ngOnInit() {
@@ -35,6 +39,18 @@ export class NewsModalComponent implements OnInit {
             } catch (e) {
                 console.log(e);
             }
+
+            const currentNewsgroup: NewsGroupInterface = this.dataService.getData('newsgroup');
+            const newsgroups = await this.ngManager.getNewsgroups();
+            for (let i = 0; i < newsgroups.length; i++) {
+                if (newsgroups[i].name === currentNewsgroup.name) {
+                    newsgroups[i].unread = newsgroups[i].unread.filter(x => x !== parseInt(this.completeNews.number, 10));
+                }
+            }
+            currentNewsgroup.unread = currentNewsgroup.unread.filter(x => x !== parseInt(this.completeNews.number, 10));
+            this.dataService.setData('newsgroup', currentNewsgroup);
+            await this.ngManager.setNewsgroups(newsgroups);
+
 
             // todo to reformat
             // @ts-ignore

@@ -1,6 +1,6 @@
 <ion-item detail>
     <ion-label [style.paddingLeft]="padding * 15 + 'px'" (click)="showNews()" style="white-space: normal">
-        <div [class.unread]="news?.news.number"> {{ news?.news.subject }} </div>
+        <div [class.unread]="shouldMarkUnread(news?.news)"> {{ news?.news.subject }} </div>
         <div class="small secondary">{{ news?.news.date }}</div>
     </ion-label>
     <ion-badge slot="end" *ngIf="badge !== null" [style]="getColor()">{{ badge.slug.toUpperCase() }}</ion-badge>
