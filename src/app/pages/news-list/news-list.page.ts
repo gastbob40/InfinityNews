@@ -18,10 +18,16 @@ export class NewsListPage implements OnInit {
     constructor(private dataService: DataService, private navCtrl: NavController, private api: ApiManagerService) {
     }
 
-    async ngOnInit() {
+    async ionViewWillEnter() {
         this.newsgroup = this.dataService.getData('newsgroup');
         if (this.newsgroup === undefined || this.newsgroup === null) {
             await this.navCtrl.navigateRoot('/');
+        }
+    }
+
+    async ngOnInit() {
+        if (this.newsgroup == null) {
+            await this.ionViewWillEnter();
         }
 
         this.api.getNews(this.newsgroup.name).subscribe(async (data) => {

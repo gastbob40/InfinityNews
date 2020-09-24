@@ -21,17 +21,9 @@ export class HomePage implements OnInit {
     }
 
     async ionViewWillEnter() {
-        // First step, get the newsgroup we need to show
         const newsgroups = await this.ngManager.getNewsgroups();
         await this.updateNewsgroups();
-        /*for (let newsgroup of newsgroups) {
-            if (newsgroup.name === 'cri.news') {
-                // newsgroup.last = 90;
-            }
-        }
-        this.ngManager.setNewsgroups(newsgroups);*/
         this.newsgroups = newsgroups.filter(ng => ng.subscribed);
-
     }
 
     async ngOnInit() {

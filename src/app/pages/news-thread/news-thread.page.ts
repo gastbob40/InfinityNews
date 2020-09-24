@@ -18,14 +18,23 @@ export class NewsThreadPage implements OnInit {
     constructor(private dataService: DataService, private navCtrl: NavController) {
     }
 
-    async ngOnInit() {
-        this.staffs = this.dataService.getData('staffs');
+    async ionViewWillEnter() {
         this.newsgroup = this.dataService.getData('newsgroup');
+        if (this.newsgroup === undefined || this.newsgroup === null) {
+            await this.navCtrl.navigateRoot('/');
+        }
+    }
+
+    async ngOnInit() {
+        if (this.newsgroup == null) {
+            await this.ionViewWillEnter();
+        }
+
+        this.staffs = this.dataService.getData('staffs');
         this.newsThread = this.dataService.getData('newsThread');
 
         if (this.newsgroup === undefined || this.newsThread === null) {
             await this.navCtrl.navigateRoot('/');
         }
     }
-
 }
