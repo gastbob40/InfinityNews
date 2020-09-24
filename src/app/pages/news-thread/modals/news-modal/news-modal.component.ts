@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ApiManagerService} from '../../../../services/api-manager.service';
+import {NewsInterface} from '../../../../interfaces/news-interface';
 
 @Component({
     selector: 'app-news-modal',
@@ -8,10 +9,10 @@ import {ApiManagerService} from '../../../../services/api-manager.service';
     styleUrls: ['./news-modal.component.scss'],
 })
 export class NewsModalComponent implements OnInit {
-    @Input() news: any;
+    @Input() news: NewsInterface;
     @Input() group: string;
-
-    completeNews: null;
+    completeNews: NewsInterface = null;
+    
     author: any = {
         name: 'Infinity News',
         email: 'infinitynews@epita.fr',

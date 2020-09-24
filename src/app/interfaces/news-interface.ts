@@ -8,4 +8,5 @@ export interface NewsInterface {
     references: string;
     subject: string;
     xref: string;
+    body: string | undefined;
 }

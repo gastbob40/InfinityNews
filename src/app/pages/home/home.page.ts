@@ -7,22 +7,12 @@ import {DataService} from '../../services/data.service';
 import {NewsGroupInterface} from '../../interfaces/news-group-interface';
 import {PopoverComponent} from './popover/settings-popover/popover.component';
 
-export enum Pages {
-    HomePage,
-    SettingsPage,
-    SubscribePage,
-    NewsGroupPage,
-    NewsGroupThreadPage,
-}
-
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-    pages = Pages;
-    selectedPage = Pages.HomePage;
     newsgroups: NewsGroupInterface[];
 
     constructor(public theme: ThemeManagerService, private ngManager: NewsgroupManagerService, private popoverController: PopoverController,
