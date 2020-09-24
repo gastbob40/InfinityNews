@@ -19,3 +19,8 @@ ion-content {
   left: 50%;
   transform: translate(-50%, calc(-50% - 50px));
 }
+
+.unread {
+  font-weight: 900;
+  text-decoration: underline;
+}

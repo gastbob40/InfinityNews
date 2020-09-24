@@ -17,9 +17,12 @@
 
     <ion-list *ngIf="newsgroups != null && newsgroups.length > 0" lines="full">
         <ion-item detail *ngFor="let newsgroup of newsgroups" (click)="setNewsGroup(newsgroup)">
-            <ion-label>
+            <ion-label [class.unread]="newsgroup.unread.length > 0">
                 {{ newsgroup.name }}
             </ion-label>
+
+            <ion-badge color="danger" slot="end"
+                       *ngIf="newsgroup.unread.length > 0">{{ newsgroup.unread.length }}</ion-badge>
         </ion-item>
     </ion-list>
 </ion-content>

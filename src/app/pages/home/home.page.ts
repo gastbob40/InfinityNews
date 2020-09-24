@@ -23,7 +23,7 @@ export enum Pages {
 export class HomePage implements OnInit {
     pages = Pages;
     selectedPage = Pages.HomePage;
-    newsgroups;
+    newsgroups: NewsGroupInterface[];
 
     constructor(public theme: ThemeManagerService, private ngManager: NewsgroupManagerService, private popoverController: PopoverController,
                 private apiService: ApiManagerService, private dataService: DataService, public navCtrl: NavController) {
@@ -33,6 +33,13 @@ export class HomePage implements OnInit {
     async ionViewWillEnter() {
         // First step, get the newsgroup we need to show
         const newsgroups = await this.ngManager.getNewsgroups();
+        await this.updateNewsgroups();
+        /*for (let newsgroup of newsgroups) {
+            if (newsgroup.name === 'assistants.news') {
+                newsgroup.last = 2077;
+            }
+        }*/
+        // this.ngManager.setNewsgroups(newsgroups);
         this.newsgroups = newsgroups.filter(ng => ng.subscribed);
 
     }
@@ -48,6 +55,25 @@ export class HomePage implements OnInit {
                 };
             }
             this.dataService.setData('staffs', staffs);
+        });
+    }
+
+    async updateNewsgroups() {
+        this.apiService.getGroups().subscribe(async (newNewsgroups: NewsGroupInterface[]) => {
+            for (let i = 0; i < this.newsgroups.length; i++) {
+                const newNewsgroup = newNewsgroups.filter(x => x.name === this.newsgroups[i].name)[0];
+
+                // We have data!
+                if (newNewsgroup) {
+                    for (let j = this.newsgroups[i].last + 1; j <= newNewsgroup.last; j++) {
+                        this.newsgroups[i].unread.push(j);
+                    }
+                    this.newsgroups[i].last = newNewsgroup.last;
+
+                }
+            }
+
+            await this.ngManager.setNewsgroups(this.newsgroups);
         });
     }
 
