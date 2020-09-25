@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ export class ApiManagerService {
     private readonly serverEndpoint: string;
 
     constructor(protected http: HttpClient) {
-        this.serverEndpoint = 'https://news-epita.gastbob40.ovh/api/';
+        this.serverEndpoint = environment.baseApiPath;
     }
 
     public doRequest(url: string): Observable<any> {
