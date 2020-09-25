@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, PopoverController} from '@ionic/angular';
+import {LoadingController, NavController, PopoverController} from '@ionic/angular';
 import {ThemeManagerService} from '../../services/theme-manager.service';
 import {NewsgroupManagerService} from '../../services/newsgroup-manager.service';
 import {ApiManagerService} from '../../services/api-manager.service';
@@ -16,7 +16,8 @@ export class HomePage implements OnInit {
     newsgroups: NewsGroupInterface[];
 
     constructor(public theme: ThemeManagerService, private ngManager: NewsgroupManagerService, private popoverController: PopoverController,
-                private apiService: ApiManagerService, private dataService: DataService, public navCtrl: NavController) {
+                private apiService: ApiManagerService, private dataService: DataService, public navCtrl: NavController,
+                private loadingController: LoadingController) {
         this.theme.loadDarkMode();
     }
 
@@ -67,6 +68,16 @@ export class HomePage implements OnInit {
         });
     }
 
+    async refreshNewsgroups() {
+        const loader = await this.loadingController.create({
+            message: 'Loading...'
+        });
+
+        await loader.present();
+        await this.updateNewsgroups();
+        await loader.dismiss();
+    }
+
     async setNewsGroup(newsgroup: NewsGroupInterface) {
         this.dataService.setData('newsgroup', newsgroup);
         await this.navCtrl.navigateForward('/news-list');
@@ -85,7 +96,7 @@ export class HomePage implements OnInit {
             (data: any) => {
                 if (data) {
                     if (data.data === 'refresh') {
-
+                        this.refreshNewsgroups();
                     } else {
                         this.navCtrl.navigateForward('/' + data.data);
                     }
