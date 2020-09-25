@@ -14,12 +14,14 @@ export class ThemeManagerService {
     loadDarkMode() {
         this.storage.get(this.STORAGE_THEME_KEY).then(darkmode => {
             if (darkmode === null || darkmode === undefined) {
-                this.blackMode = false;
+                this.blackMode = true;
+                this.storage.set(this.STORAGE_THEME_KEY, this.blackMode);
             } else {
                 this.blackMode = darkmode;
-                if (this.blackMode) {
-                    document.body.classList.toggle('dark');
-                }
+            }
+
+            if (this.blackMode) {
+                document.body.classList.toggle('dark');
             }
         });
     }
