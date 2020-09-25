@@ -6,6 +6,7 @@ import {HomePage} from './home.page';
 
 import {HomePageRoutingModule} from './home-routing.module';
 import {LoaderComponentComponent} from './components/loader-component/loader-component.component';
+import {PopoverComponent} from './popover/settings-popover/popover.component';
 
 
 @NgModule({
@@ -13,13 +14,14 @@ import {LoaderComponentComponent} from './components/loader-component/loader-com
         CommonModule,
         FormsModule,
         IonicModule,
-        HomePageRoutingModule
+        HomePageRoutingModule,
     ],
-    declarations: [HomePage, LoaderComponentComponent,
-        ],
+    declarations: [HomePage, LoaderComponentComponent, PopoverComponent
+    ],
     exports: [
         LoaderComponentComponent,
-    ],
+        PopoverComponent
+    ]
 })
 export class HomePageModule {
 }
