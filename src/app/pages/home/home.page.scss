@@ -24,3 +24,8 @@ ion-content {
   font-weight: 900;
   text-decoration: underline;
 }
+
+ion-item-option {
+  --background: linear-gradient(to right, var(--ion-border-color), var(--ion-item-background));
+  font-size: 30px;
+}

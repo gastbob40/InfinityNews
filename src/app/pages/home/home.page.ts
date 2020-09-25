@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoadingController, NavController, PopoverController} from '@ionic/angular';
+import {LoadingController, NavController, PopoverController, ToastController} from '@ionic/angular';
 import {ThemeManagerService} from '../../services/theme-manager.service';
 import {NewsgroupManagerService} from '../../services/newsgroup-manager.service';
 import {ApiManagerService} from '../../services/api-manager.service';
@@ -17,7 +17,7 @@ export class HomePage implements OnInit {
 
     constructor(public theme: ThemeManagerService, private ngManager: NewsgroupManagerService, private popoverController: PopoverController,
                 private apiService: ApiManagerService, private dataService: DataService, public navCtrl: NavController,
-                private loadingController: LoadingController) {
+                private loadingController: LoadingController, private toastController: ToastController) {
         this.theme.loadDarkMode();
     }
 
@@ -108,5 +108,22 @@ export class HomePage implements OnInit {
                 }
             }
         );
+    }
+
+    async maskUnread(newsgroup: NewsGroupInterface) {
+        const newsgroups = await this.ngManager.getNewsgroups();
+        for (let i = 0; i < newsgroups.length; i++) {
+            if (newsgroups[i].name === newsgroup.name) {
+                newsgroups[i].unread = [];
+            }
+        }
+        await this.ngManager.setNewsgroups(newsgroups);
+        this.newsgroups = newsgroups.filter(ng => ng.subscribed);
+
+        const toast = await this.toastController.create({
+            message: `You just marked ${newsgroup.name} as read.`,
+            duration: 2000,
+        });
+        await toast.present();
     }
 }

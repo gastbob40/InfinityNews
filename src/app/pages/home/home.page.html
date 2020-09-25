@@ -16,14 +16,20 @@
              class="empty-svg"></ion-img>
 
     <ion-list *ngIf="newsgroups != null && newsgroups.length > 0" lines="full">
-        <ion-item detail *ngFor="let newsgroup of newsgroups" (click)="setNewsGroup(newsgroup)">
-            <ion-label [class.unread]="newsgroup.unread.length > 0">
-                {{ newsgroup.name }}
-            </ion-label>
+        <ion-item-sliding *ngFor="let newsgroup of newsgroups">
+            <ion-item-options side="start">
+                <ion-item-option (click)="maskUnread(newsgroup)"><ion-icon name="mail-unread-outline"></ion-icon></ion-item-option>
+            </ion-item-options>
 
-            <ion-badge color="danger" slot="end"
-                       *ngIf="newsgroup.unread.length > 0">{{ newsgroup.unread.length }}</ion-badge>
-        </ion-item>
+            <ion-item detail (click)="setNewsGroup(newsgroup)">
+                <ion-label [class.unread]="newsgroup.unread.length > 0">
+                    {{ newsgroup.name }}
+                </ion-label>
+
+                <ion-badge color="danger" slot="end"
+                           *ngIf="newsgroup.unread.length > 0">{{ newsgroup.unread.length }}</ion-badge>
+            </ion-item>
+        </ion-item-sliding>
     </ion-list>
 </ion-content>
 
