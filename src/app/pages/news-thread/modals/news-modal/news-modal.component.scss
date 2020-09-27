@@ -15,3 +15,11 @@ ion-content {
 .line-breaker {
   white-space: pre-line;
 }
+
+ion-card {
+  color: var(--ion-card-color-primary);
+}
+
+.signature {
+  color: var(--ion-card-color-secondary);
+}

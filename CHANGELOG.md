@@ -10,10 +10,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 * Change font to a monospace font
 * Wrap news to allow multi line 
+* Added a darker color for news signatures ([#4](https://github.com/gastbob40/InfinityNews/issues/4))
 
 ### Fix
 
-* Upgrade auto unwrap method, by checking next chars (as  `>`, `\n`, `[` etc)
+* Upgrade auto unwrap method, by checking next chars (as  `>`, `\n`, `[` etc) ([#3](https://github.com/gastbob40/InfinityNews/issues/3))
 
 ## [0.1.1] - 2020-09-26
 
