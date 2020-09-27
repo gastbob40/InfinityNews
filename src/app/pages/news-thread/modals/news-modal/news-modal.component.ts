@@ -51,23 +51,29 @@ export class NewsModalComponent implements OnInit {
             this.dataService.setData('newsgroup', currentNewsgroup);
             await this.ngManager.setNewsgroups(newsgroups);
 
+            const bodyParts = this.completeNews.body.replaceAll('\r\n', '\n').split('-- ');
+            const chars = bodyParts[0].split('');
+            const excludes = ['\n', '\t', '[', '*', '-', '>'];
+            for (let i = 0; i < chars.length - 1; i++) {
+                if (chars[i] === '\n') {
 
-            // todo to reformat
-            // @ts-ignore
+                    if (!excludes.includes(chars[i + 1])) {
+                        chars[i] = ' ';
+                    } else {
+                        i++;
+                    }
+                }
+            }
 
-            this.completeNews.body = this.completeNews.body
-                // @ts-ignore
-                .replaceAll('-- \r\n', '\r\t\r\t')
-                .replaceAll('\r\n\r\n', '\r\r\r')
-                .replaceAll('\r\n', ' ')
-                .replaceAll('\r\r\r', '\n\n')
-                .replaceAll('\r\t\r\t', '-- \n');
+            this.completeNews.body = {
+                content: chars.join(''),
+                signature: bodyParts[bodyParts.length - 1]
+            };
         });
     }
-
 
     async closeModal() {
         await this.modalController.dismiss();
     }
-
 }
+

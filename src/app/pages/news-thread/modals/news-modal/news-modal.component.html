@@ -24,6 +24,10 @@
             </div>
         </ion-card-header>
 
-        <ion-card-content class="line-breaker">{{ completeNews?.body }}</ion-card-content>
+        <ion-card-content class="line-breaker">
+            {{ completeNews?.body.content }}
+            --
+            {{ completeNews?.body.signature }}
+        </ion-card-content>
     </ion-card>
 </ion-content>

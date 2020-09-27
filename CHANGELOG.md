@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 * Change font to a monospace font
 * Wrap news to allow multi line 
 
+### Fix
+
+* Upgrade auto unwrap method, by checking next chars (as  `>`, `\n`, `[` etc)
+
 ## [0.1.1] - 2020-09-26
 
 ### Added
