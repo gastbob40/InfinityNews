@@ -20,7 +20,7 @@
         </ion-item>
 
         <ion-item detail *ngFor="let n of news" [class.not-display]="!shouldDisplay(n)" (click)="setNewsThread(n)">
-            <ion-label [class.unread]="shouldMarkUnread(n)">
+            <ion-label [class.unread]="shouldMarkUnread(n)" class="ion-text-wrap">
                 {{ n.news.subject }}
             </ion-label>
         </ion-item>
