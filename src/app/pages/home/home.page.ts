@@ -48,7 +48,7 @@ export class HomePage implements OnInit {
         });
     }
 
-    async updateNewsgroups() {
+    async updateNewsgroups(event = null) {
         this.apiService.getGroups().subscribe(async (newNewsgroups: NewsGroupInterface[]) => {
             let newsgroups = await this.ngManager.getNewsgroups();
             for (let i = 0; i < newsgroups.length; i++) {
@@ -65,17 +65,11 @@ export class HomePage implements OnInit {
 
             await this.ngManager.setNewsgroups(newsgroups);
             this.newsgroups = newsgroups.filter(ng => ng.subscribed);
-        });
-    }
 
-    async refreshNewsgroups() {
-        const loader = await this.loadingController.create({
-            message: 'Loading...'
+            if (event) {
+                event.target.complete();
+            }
         });
-
-        await loader.present();
-        await this.updateNewsgroups();
-        await loader.dismiss();
     }
 
     async setNewsGroup(newsgroup: NewsGroupInterface) {
@@ -94,17 +88,8 @@ export class HomePage implements OnInit {
 
         return popover.onDidDismiss().then(
             (data: any) => {
-                if (data) {
-                    if (data.data === 'refresh') {
-                        this.refreshNewsgroups();
-                    } else {
-                        this.navCtrl.navigateForward('/' + data.data);
-                    }
-                    if (data.data === 'settings') {
-                    }
-
-                    if (data.data === 'subscribe') {
-                    }
+                if (data && data.data !== undefined) {
+                    this.navCtrl.navigateForward('/' + data.data);
                 }
             }
         );

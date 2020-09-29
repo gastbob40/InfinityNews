@@ -44,7 +44,6 @@ export class NewsgroupThreadItemComponent implements OnInit {
 
         await modal.present();
         await modal.onDidDismiss();
-        console.log('close');
         this.newsgroup = this.dataService.getData('newsgroup');
     }
 

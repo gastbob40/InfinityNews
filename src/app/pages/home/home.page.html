@@ -15,10 +15,17 @@
     <ion-img src="../../../assets/empty.svg" *ngIf="newsgroups != null && newsgroups.length == 0"
              class="empty-svg"></ion-img>
 
+    <ion-refresher slot="fixed" (ionRefresh)="updateNewsgroups($event)">
+        <ion-refresher-content pullingIcon="circular" pullingText="Pull to refresh">
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-list *ngIf="newsgroups != null && newsgroups.length > 0" lines="full">
         <ion-item-sliding *ngFor="let newsgroup of newsgroups">
             <ion-item-options side="start">
-                <ion-item-option (click)="maskUnread(newsgroup)"><ion-icon name="mail-unread-outline"></ion-icon></ion-item-option>
+                <ion-item-option (click)="maskUnread(newsgroup)">
+                    <ion-icon name="mail-unread-outline"></ion-icon>
+                </ion-item-option>
             </ion-item-options>
 
             <ion-item detail (click)="setNewsGroup(newsgroup)">
