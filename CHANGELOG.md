@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 * Wrap news to allow multi line 
 * Added a darker color for news signatures ([#4](https://github.com/gastbob40/InfinityNews/issues/4))
 * Added new way to refresh newsgroups by swiping down ([#5](https://github.com/gastbob40/InfinityNews/issues/5))
+* Make link clickable ([#2](https://github.com/gastbob40/InfinityNews/issues/2))
 
 ### Fix
 
