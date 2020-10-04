@@ -5,6 +5,20 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
+
+        <ion-buttons slot="end">
+            <ion-button style="font-size: 20px;" (click)="markAllUnread()">
+                <ion-icon name="checkmark-done-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button style="font-size: 20px;" *ngIf="onlyUnread == true" (click)="setOnlyUnread(false)">
+                <ion-icon name="eye-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button style="font-size: 20px;" *ngIf="onlyUnread == false" (click)="setOnlyUnread(true)">
+                <ion-icon name="eye-off-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
